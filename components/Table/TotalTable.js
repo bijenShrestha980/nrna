@@ -43,7 +43,9 @@ const TotalTable = (props) => {
 
   return (
     <div
-      className={`bg-white py-6 px-6 rounded-xl shadow-md h-fit ${props.className}`}
+      className={`bg-white py-6 px-6 rounded-xl shadow-md h-fit ${
+        props.className && props.className
+      }`}
     >
       <div className="md:flex md:justify-between md:items-center mb-6 gap-2 overflow-x-auto">
         <h5 className="mb-4 md:mb-0 text-lg font-bold text-indigo-900 uppercase">

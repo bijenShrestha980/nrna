@@ -21,7 +21,9 @@ ChartJS.register(
 const BarChart = (props) => {
   return (
     <div
-      className={`bg-white py-6 px-6 rounded-xl shadow-md h-fit ${props.className}`}
+      className={`bg-white py-6 px-6 rounded-xl shadow-md h-fit min-w-[400px] min-h-[250px] ${
+        props.className && props.className
+      }`}
     >
       <Bar data={data} options={data.options} />
     </div>

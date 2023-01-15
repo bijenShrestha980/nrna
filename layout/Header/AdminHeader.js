@@ -16,7 +16,7 @@ const AdminHeader = (props) => {
     >
       <div className="flex items-center justify-start gap-5">
         <button
-          className="py-4"
+          className="py-4 focus-visible:outline-none"
           onClick={() => props.setSidebar(!props.sidebar)}
         >
           <MenuIcon className="transition-all ease-in-out duration-300 hover:scale-110 active:scale-125" />
