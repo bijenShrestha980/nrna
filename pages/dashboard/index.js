@@ -25,7 +25,7 @@ const dashboard = () => {
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <TotalTable title={"new application"} tableData={tableData} />
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto rounded-xl">
             <BarChart />
           </div>
           <TotalTable title={"payment pending"} tableData={tableData} />
