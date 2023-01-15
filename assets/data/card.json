@@ -1,0 +1,6 @@
+[
+  { "id": 1, "title": "new application", "count": 100 },
+  { "id": 2, "title": "member", "count": 340 },
+  { "id": 3, "title": "rejected", "count": 100 },
+  { "id": 4, "title": "total registered", "count": 1056 }
+]

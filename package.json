@@ -10,10 +10,28 @@
   },
   "dependencies": {
     "@next/font": "13.1.2",
+    "@paypal/react-paypal-js": "^7.8.2",
+    "@reduxjs/toolkit": "^1.9.1",
+    "chart.js": "^4.1.2",
+    "compressorjs": "^1.1.1",
     "eslint": "8.31.0",
     "eslint-config-next": "13.1.2",
+    "js-cookie": "^3.0.1",
     "next": "13.1.2",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-chartjs-2": "^5.2.0",
+    "react-datepicker": "^4.8.0",
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.42.1",
+    "react-paginate": "^8.1.4",
+    "react-redux": "^8.0.5",
+    "react-toastify": "^9.1.1",
+    "redux-persist": "^6.0.0",
+    "states-cities-db": "^1.4.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.4"
   }
 }

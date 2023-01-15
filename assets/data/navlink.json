@@ -1,0 +1,6 @@
+[
+  { "id": 1, "title": "personal information" },
+  { "id": 2, "title": "profession and interest" },
+  { "id": 3, "title": "verification" },
+  { "id": 4, "title": "payment" }
+]
