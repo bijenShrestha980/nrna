@@ -11,12 +11,12 @@ const TotalTableRow = (props) => {
       onClick={props.onClick}
     >
       {/* <td className="py-3 pl-5">{props.sn + 1 + props.itemOffset}</td> */}
-      <td className="py-3 px-5">#{props.id}</td>
-      <td className="py-3 px-5 capitalize">{props.name}</td>
-      <td className="py-3 px-5 capitalize">{props.country}</td>
-      <td className="py-3 px-5">{props.email}</td>
+      <td className="py-3 px-5 select-none">#{props.id}</td>
+      <td className="py-3 px-5 capitalize select-none">{props.name}</td>
+      <td className="py-3 px-5 capitalize select-none">{props.country}</td>
+      <td className="py-3 px-5 select-none">{props.email}</td>
       {/* <td className="py-3 px-5">{props.number}</td> */}
-      <td className="py-3 px-5 capitalize">
+      <td className="py-3 px-5 capitalize select-none">
         <span
           className={`badge rounded-pill ${
             props.type === "new"
