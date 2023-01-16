@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import React, { memo, useCallback } from "react";
 import ReactPaginate from "react-paginate";
 // UTILS
@@ -33,4 +34,4 @@ const Pagination = (props) => {
   );
 };
 
-export default memo(Pagination);
+export default dynamic(() => Promise.resolve(memo(Pagination)), { ssr: false });

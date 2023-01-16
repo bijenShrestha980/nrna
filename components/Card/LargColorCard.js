@@ -1,6 +1,9 @@
+import dynamic from "next/dynamic";
+import { memo } from "react";
+
 const LargColorCard = (props) => (
   <div
-    className={`w-full h-35 p-8 flex flex-col justify-around items-start last:mr-0 capitalize bg-white cursor-pointer transition-all ease-in-out duration-300 rounded-xl shadow-md hover:-translate-y-1 hover:scale-105 hover:shadow-xl`}
+    className={`w-full h-35 p-8 flex flex-col justify-around items-start last:mr-0 capitalize bg-white cursor-pointer transition-all ease-in-out duration-300 rounded-xl shadow-md hover:-translate-y-1 hover:scale-105 hover:shadow-xl select-none`}
     onClick={props.onClick}
   >
     <h5 className="text-xl text-slate-500">{props.title}</h5>
@@ -22,4 +25,6 @@ const LargColorCard = (props) => (
   </div>
 );
 
-export default LargColorCard;
+export default dynamic(() => Promise.resolve(memo(LargColorCard)), {
+  ssr: false,
+});

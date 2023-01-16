@@ -11,13 +11,19 @@ import {
 // SLICES
 import { appSlice } from "./slice/appSlice";
 // API
-import { paymentApi } from "./api/paymentApi";
 import { authApi } from "./api/authApi";
+import { postApi } from "./api/postApi";
+import { committeeApi } from "./api/committeeApi";
+import { membershipApi } from "./api/membershipApi";
+import { paymentApi } from "./api/paymentApi";
 
 export const store = configureStore({
   reducer: {
     app: appSlice.reducer,
     [authApi.reducerPath]: authApi.reducer,
+    [membershipApi.reducerPath]: membershipApi.reducer,
+    [committeeApi.reducerPath]: committeeApi.reducer,
+    [postApi.reducerPath]: postApi.reducer,
     [paymentApi.reducerPath]: paymentApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
@@ -25,7 +31,13 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(authApi.middleware, paymentApi.middleware),
+    }).concat(
+      authApi.middleware,
+      membershipApi.middleware,
+      committeeApi.middleware,
+      postApi.middleware,
+      paymentApi.middleware
+    ),
 });
 
 export const persistor = persistStore(store);

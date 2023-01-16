@@ -16,4 +16,4 @@ const formatDate = (props) => {
   return `${year}-${month}-${date}`;
 };
 
-export { formatDate };
+export default formatDate;

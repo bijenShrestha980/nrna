@@ -1,4 +1,5 @@
-import React, { useRef } from "react";
+import dynamic from "next/dynamic";
+import React, { memo, useRef } from "react";
 // COMPONENTS
 import Btn from "../Button/Btn";
 
@@ -48,4 +49,6 @@ const PaymentVoucher = (props) => {
   );
 };
 
-export default PaymentVoucher;
+export default dynamic(() => Promise.resolve(memo(PaymentVoucher)), {
+  ssr: false,
+});

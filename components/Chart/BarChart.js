@@ -1,3 +1,4 @@
+import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -7,7 +8,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { Bar } from "react-chartjs-2";
+import dynamic from "next/dynamic";
 
 ChartJS.register(
   CategoryScale,
@@ -75,4 +76,4 @@ export const data = {
   },
 };
 
-export default BarChart;
+export default dynamic(() => Promise.resolve(BarChart), { ssr: false });

@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Image from "next/image";
 // UTILS
 import {
@@ -79,4 +80,4 @@ const AdminHeader = (props) => {
   );
 };
 
-export default AdminHeader;
+export default memo(AdminHeader);

@@ -5,7 +5,6 @@ import navlink from "../../assets/data/navlink.json";
 
 const Navbar = () => {
   const router = useRouter();
-  console.log(parseInt(router.pathname.split("/")[2]));
 
   return (
     <nav className="grid grid-cols-1 md:grid-cols-4 bg-sky-200">

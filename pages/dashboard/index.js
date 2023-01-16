@@ -1,20 +1,15 @@
 import { useRouter } from "next/router";
-import dynamic from "next/dynamic";
 // ASSETS
 import cardData from "../../assets/data/card";
 import tableData from "../../assets/data/table";
 // COMPONENTS
 import AdminLayout from "@/layout/AdminLayout";
-const TotalTable = dynamic(() => import("@/components/Table/TotalTable"));
-const BarChart = dynamic(() => import("@/components/Chart/BarChart"));
-const ColoredStatsCard = dynamic(() =>
-  import("@/components/Card/ColoredStatsCard")
-);
-const ColoredIncomeCard = dynamic(() =>
-  import("@/components/Card/ColoredIncomeCard")
-);
-const EventsCard = dynamic(() => import("@/components/Card/EventsCard"));
-const LargColorCard = dynamic(() => import("@/components/Card/LargColorCard"));
+import TotalTable from "@/components/Table/TotalTable";
+import BarChart from "@/components/Chart/BarChart";
+import ColoredStatsCard from "@/components/Card/ColoredStatsCard";
+import ColoredIncomeCard from "@/components/Card/ColoredIncomeCard";
+import EventsCard from "@/components/Card/EventsCard";
+import LargColorCard from "@/components/Card/LargColorCard";
 
 const dashboard = () => {
   return (

@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import React, { memo } from "react";
 // import paypal from "../../../assets/images/payment/paypal_small.png";
 // import khalti from "../../../assets/images/payment/khalti_small.webp";
@@ -52,4 +53,6 @@ const TotalTableRow = (props) => {
   );
 };
 
-export default memo(TotalTableRow);
+export default dynamic(() => Promise.resolve(memo(TotalTableRow)), {
+  ssr: false,
+});

@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Head from "next/head";
 
 const Header = ({ children }) => {
@@ -14,4 +15,4 @@ const Header = ({ children }) => {
   );
 };
 
-export default Header;
+export default memo(Header);

@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import React, { memo } from "react";
 
 const AdminBreadcrumb = (props) => {
@@ -9,4 +10,6 @@ const AdminBreadcrumb = (props) => {
   );
 };
 
-export default memo(AdminBreadcrumb);
+export default dynamic(() => Promise.resolve(memo(AdminBreadcrumb)), {
+  ssr: false,
+});

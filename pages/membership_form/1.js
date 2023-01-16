@@ -3,9 +3,9 @@ import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { Controller, useForm } from "react-hook-form";
 // REDUCERS
-import { appSelector, setPersonalInfo } from "../../features/slice/appSlice";
+import { appSelector, setPersonalInfo } from "@/features/slice/appSlice";
 // UTILS
-import { COUNTRIES } from "../../utils/countries";
+import { COUNTRIES } from "@/utils/countries";
 // COMPONENTS
 import Btn from "@/components/Button/Btn";
 import UserLayout from "@/layout/UserLayout";
@@ -38,17 +38,17 @@ const PersonalInformation = () => {
               <label htmlFor="first_name" className="text-slate-400">
                 First Name *
               </label>
-              {errors.firstName && (
+              {errors.first_name && (
                 <p className="text-red-400 font-semibold">
-                  {errors.firstName.message}
+                  {errors.first_name.message}
                 </p>
               )}
             </div>
             <Controller
-              name="firstName"
+              name="first_name"
               defaultValue={
-                membershipForm?.personalInfo?.firstName
-                  ? membershipForm?.personalInfo?.firstName
+                membershipForm?.personalInfo?.first_name
+                  ? membershipForm?.personalInfo?.first_name
                   : ""
               }
               control={control}
@@ -79,17 +79,17 @@ const PersonalInformation = () => {
               <label htmlFor="middle_name" className="text-slate-400">
                 Middle Name
               </label>
-              {errors.middleName && (
+              {errors.middle_name && (
                 <p className="text-red-400 font-semibold">
-                  {errors.middleName.message}
+                  {errors.middle_name.message}
                 </p>
               )}
             </div>
             <Controller
-              name="middleName"
+              name="middle_name"
               defaultValue={
-                membershipForm?.personalInfo?.middleName
-                  ? membershipForm?.personalInfo?.middleName
+                membershipForm?.personalInfo?.middle_name
+                  ? membershipForm?.personalInfo?.middle_name
                   : ""
               }
               control={control}
@@ -119,17 +119,17 @@ const PersonalInformation = () => {
               <label htmlFor="last_name" className="text-slate-400">
                 Last Name *
               </label>
-              {errors.lastName && (
+              {errors.last_name && (
                 <p className="text-red-400 font-semibold">
-                  {errors.lastName.message}
+                  {errors.last_name.message}
                 </p>
               )}
             </div>
             <Controller
-              name="lastName"
+              name="last_name"
               defaultValue={
-                membershipForm?.personalInfo?.lastName
-                  ? membershipForm?.personalInfo?.lastName
+                membershipForm?.personalInfo?.last_name
+                  ? membershipForm?.personalInfo?.last_name
                   : ""
               }
               control={control}

@@ -41,7 +41,7 @@ const Verification = () => {
     dispatch(
       setVerification({
         ...data,
-        expiryDate: Date.parse(data.expiryDate),
+        passport_expiry_date: Date.parse(data.passport_expiry_date),
         picture: picture,
       })
     );
@@ -59,17 +59,17 @@ const Verification = () => {
               <label htmlFor="passport_number" className="text-slate-400">
                 Passport Number *
               </label>
-              {errors.passportNumber && (
+              {errors.passport_number && (
                 <p className="text-red-400 font-semibold">
-                  {errors.passportNumber.message}
+                  {errors.passport_number.message}
                 </p>
               )}
             </div>
             <Controller
-              name="passportNumber"
+              name="passport_number"
               defaultValue={
-                membershipForm?.verification?.passportNumber
-                  ? membershipForm?.verification?.passportNumber
+                membershipForm?.verification?.passport_number
+                  ? membershipForm?.verification?.passport_number
                   : ""
               }
               control={control}
@@ -100,9 +100,9 @@ const Verification = () => {
               <label className="text-slate-400" htmlFor="expiry_date">
                 Expiry Date *
               </label>
-              {errors.expiryDate && (
+              {errors.passport_expiry_date && (
                 <p className="text-red-400 font-semibold">
-                  {errors.expiryDate.message}
+                  {errors.passport_expiry_date.message}
                 </p>
               )}
             </div>
@@ -132,10 +132,10 @@ const Verification = () => {
               className="grow p-4 text-sm text-slate-400 border-solid border-2 border-slate-400 duration-500 ease-in-out focus:border-slate-600 focus-visible:outline-0"
             /> */}
               <Controller
-                name="expiryDate"
+                name="passport_expiry_date"
                 defaultValue={
-                  membershipForm?.verification?.expiryDate &&
-                  new Date(membershipForm?.verification?.expiryDate)
+                  membershipForm?.verification?.passport_expiry_date &&
+                  new Date(membershipForm?.verification?.passport_expiry_date)
                 }
                 control={control}
                 render={({ field }) => (

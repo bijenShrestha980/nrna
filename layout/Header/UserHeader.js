@@ -7,7 +7,13 @@ const Header = () => {
   return (
     <header className="flex justify-between align-center py-8">
       <div className="w-14 h-14">
-        <Image width="100" height="100" src={logo} alt="NRNA" />
+        <Image
+          width="100"
+          height="100"
+          src={logo}
+          alt="NRNA"
+          className="h-auto w-auto"
+        />
       </div>
       <div>
         <h3 className="text-3xl font-semibold text-right text-sky-600">NCC</h3>

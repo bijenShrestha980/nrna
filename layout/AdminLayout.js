@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 // COMPONENTS
 import AdminBreadcrumb from "./Breadcrumb/AdminBreadcrumb";
 import AdminHeader from "./Header/AdminHeader";
@@ -36,4 +36,4 @@ const AdminLayout = ({ children }) => {
   );
 };
 
-export default AdminLayout;
+export default memo(AdminLayout);

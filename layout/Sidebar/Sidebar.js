@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 // ASSETS
@@ -28,7 +29,7 @@ const Sidebar = (props) => {
           loading="lazy"
           width={"500"}
           height={"500"}
-          className="h-10 w-10 md:h-14 md:w-14 rounded-full"
+          className="h-auto w-auto md:h-14 md:w-14 rounded-full"
         />
         <span
           className={`py-2 text-center hidden md:inline-block transition-all ease-in-out duration-700 ${
@@ -55,7 +56,7 @@ const Sidebar = (props) => {
             className={`h-5 mr-2 md:ml-2 text-indigo-800 transition-all ease-in-out duration-300 md:group-hover:translate-x-2 group-hover:h-6`}
           />
           <h5
-            className={`text-xl px-2 text-slate-400 hidden md:inline-block transition-all ease-in-out duration-300 md:group-hover:translate-x-2`}
+            className={`text-xl px-2 text-slate-400 hidden md:inline-block transition-all ease-in-out duration-300 md:group-hover:translate-x-2 select-none`}
           >
             Home
           </h5>
@@ -65,9 +66,9 @@ const Sidebar = (props) => {
             props.sidebar === false ? "-translate-x-96" : "translate-x-0 "
           }`}
         >
-          <UserCogIcon className="h-5 mr-2 md:ml-2 text-indigo-800 active:bg-indigo-800 active:text-white transition-all ease-in-out duration-300 md:group-hover:translate-x-2 group-hover:h-6" />
+          <UserCogIcon className="h-5 mr-2 md:ml-2 text-indigo-800 transition-all ease-in-out duration-300 md:group-hover:translate-x-2 group-hover:h-6" />
           <h5
-            className={`text-xl text-slate-400 px-2 hidden md:inline-block transition-all md:group-hover:translate-x-2 ease-in-out duration-300`}
+            className={`text-xl text-slate-400 px-2 hidden md:inline-block transition-all md:group-hover:translate-x-2 ease-in-out duration-300 select-none`}
           >
             Settings
           </h5>
@@ -78,7 +79,7 @@ const Sidebar = (props) => {
           }`}
         >
           <FileSearchIcon className="h-5 mr-2 md:ml-2 text-indigo-800  transition-all ease-in-out duration-300 md:group-hover:translate-x-2 group-hover:h-6" />
-          <h5 className="text-xl text-slate-400 px-2 hidden md:inline-block transition-all ease-in-out duration-300 md:group-hover:translate-x-2">
+          <h5 className="text-xl text-slate-400 px-2 hidden md:inline-block transition-all ease-in-out duration-300 md:group-hover:translate-x-2 select-none">
             Status
           </h5>
         </li>
@@ -88,7 +89,7 @@ const Sidebar = (props) => {
           }`}
         >
           <BellIcon className="h-5 mr-2 md:ml-2 text-indigo-800  transition-all ease-in-out duration-300 md:group-hover:translate-x-2 group-hover:h-6" />
-          <h5 className="text-xl text-slate-400 px-2 hidden md:inline-block transition-all ease-in-out duration-300 md:group-hover:translate-x-2">
+          <h5 className="text-xl text-slate-400 px-2 hidden md:inline-block transition-all ease-in-out duration-300 md:group-hover:translate-x-2 select-none">
             Bulk Notification
           </h5>
         </li>
@@ -98,7 +99,7 @@ const Sidebar = (props) => {
           }`}
         >
           <HomeIcon className="h-5 mr-2 md:ml-2 text-indigo-800  transition-all ease-in-out duration-300 md:group-hover:translate-x-2 group-hover:h-6" />
-          <h5 className="text-xl text-slate-400 px-2 hidden md:inline-block transition-all ease-in-out duration-300 md:group-hover:translate-x-2">
+          <h5 className="text-xl text-slate-400 px-2 hidden md:inline-block transition-all ease-in-out duration-300 md:group-hover:translate-x-2 select-none">
             Home
           </h5>
         </li>
@@ -108,7 +109,7 @@ const Sidebar = (props) => {
           }`}
         >
           <CalendarIcon className="h-5 mr-2 md:ml-2 text-indigo-800  transition-all ease-in-out duration-300 md:group-hover:translate-x-2 group-hover:h-6" />
-          <h5 className="text-xl text-slate-400 px-2 hidden md:inline-block transition-all ease-in-out duration-300 md:group-hover:translate-x-2">
+          <h5 className="text-xl text-slate-400 px-2 hidden md:inline-block transition-all ease-in-out duration-300 md:group-hover:translate-x-2 select-none">
             Event
           </h5>
         </li>
@@ -117,4 +118,4 @@ const Sidebar = (props) => {
   );
 };
 
-export default Sidebar;
+export default memo(Sidebar);

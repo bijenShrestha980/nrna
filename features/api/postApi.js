@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import Cookies from "js-cookie";
-export const membershipApi = createApi({
-  reducerPath: "membership",
+export const postApi = createApi({
+  reducerPath: "post",
   baseQuery: fetchBaseQuery({
     baseUrl: `${process.env.REACT_APP_BASE_URL}/api/`,
     prepareHeaders: (headers) => {
@@ -13,16 +13,13 @@ export const membershipApi = createApi({
       return headers;
     },
   }),
-  tagTypes: [],
+  tagTypes: ["posts"],
   endpoints: (builder) => ({
-    memberRegister: builder.mutation({
-      query: (data) => ({
-        url: `/member_register`,
-        method: "POST",
-        body: data,
-      }),
+    getPosts: builder.query({
+      query: () => "/get_posts",
+      providesTags: ["posts"],
     }),
   }),
 });
 
-export const { useMemberRegisterMutation } = membershipApi;
+export const { useGetPostsQuery } = postApi;

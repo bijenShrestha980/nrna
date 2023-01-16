@@ -1,6 +1,5 @@
-import { useEffect } from "react";
+import { memo, useEffect } from "react";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
-import { toast } from "react-toastify";
 import Spinner from "../../layout/Loader/Spinner";
 
 // This values are the props in the UI
@@ -63,4 +62,4 @@ const ButtonWrapper = ({ currency, showSpinner }) => {
   );
 };
 
-export default Paypal;
+export default dynamic(() => Promise.resolve(memo(Paypal)), { ssr: false });

@@ -118,21 +118,21 @@ const Profession = () => {
         <div>
           <div className="flex flex-col md:flex-row justify-around">
             <span className="flex flex-col">
-              <label htmlFor="notification" className="text-slate-400">
+              <label htmlFor="project_notification" className="text-slate-400">
                 Project Notification
               </label>
               <Controller
-                name="notification"
+                name="project_notification"
                 defaultValue={
-                  membershipForm?.profAndInt?.notification
-                    ? membershipForm?.profAndInt?.notification
+                  membershipForm?.profAndInt?.project_notification
+                    ? membershipForm?.profAndInt?.project_notification
                     : false
                 }
                 control={control}
                 render={({ field }) => (
                   <input
                     type="checkbox"
-                    id="notification"
+                    id="project_notification"
                     checked={field.value}
                     className="my-7 p-4 h-9 w-9 text-sm border-solid border-2 border-slate-400 duration-500 ease-in-out focus:border-slate-600 focus-visible:outline-0"
                     {...field}
@@ -141,21 +141,21 @@ const Profession = () => {
               />
             </span>
             <span className="flex flex-col">
-              <label htmlFor="newsletter" className="text-slate-400">
+              <label htmlFor="news_letter" className="text-slate-400">
                 Newsletter
               </label>
               <Controller
-                name="newsletter"
+                name="news_letter"
                 defaultValue={
-                  membershipForm?.profAndInt?.newsletter
-                    ? membershipForm?.profAndInt?.newsletter
+                  membershipForm?.profAndInt?.news_letter
+                    ? membershipForm?.profAndInt?.news_letter
                     : false
                 }
                 control={control}
                 render={({ field }) => (
                   <input
                     type="checkbox"
-                    id="newsletter"
+                    id="news_letter"
                     checked={field.value}
                     className="my-7 p-4 h-9 w-9 text-sm border-solid border-2 border-slate-400 duration-500 ease-in-out focus:border-slate-600 focus-visible:outline-0"
                     {...field}
@@ -190,7 +190,7 @@ const Profession = () => {
         </div>
         <div className="md:col-start-2 flex flex-col md:flex-row justify-end mt-3 md:space-x-2 space-y-2 md:space-y-0">
           <div
-            onClick={() => router.push("/membership-form/3")}
+            onClick={() => router.push("/membership_form/3")}
             className="flex flex-col md:flex-row justify-end"
           >
             <Btn title={"Skip"} className={"bg-sky-600 active:bg-sky-700"} />

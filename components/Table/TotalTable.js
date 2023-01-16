@@ -1,5 +1,6 @@
+import React, { memo, useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import React, { useCallback, useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 // Handler
 import { ArrowUpDownIcon } from "../../utils/icons";
 // COMPONENTS
@@ -226,4 +227,4 @@ const TotalTable = (props) => {
   );
 };
 
-export default TotalTable;
+export default dynamic(() => Promise.resolve(memo(TotalTable)), { ssr: false });

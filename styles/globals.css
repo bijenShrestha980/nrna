@@ -8,6 +8,25 @@
   }
 }
 
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #312e81;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 5px;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #312e81;
+  border-radius: 14px;
+  border: 3px solid #312e81;
+}
 option {
   font-weight: 600;
   font-size: 15px;
