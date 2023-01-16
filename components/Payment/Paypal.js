@@ -1,4 +1,5 @@
 import { memo, useEffect } from "react";
+import dynamic from "next/dynamic";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import Spinner from "../../layout/Loader/Spinner";
 
