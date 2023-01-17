@@ -22,11 +22,11 @@ ChartJS.register(
 const BarChart = (props) => {
   return (
     <div
-      className={`bg-white py-6 px-6 rounded-xl shadow-md h-fit min-w-[400px] min-h-[250px] ${
-        props.className && props.className
-      }`}
+      className={`h-auto overflow-x-auto ${props.className && props.className}`}
     >
-      <Bar data={data} options={data.options} />
+      <div className="bg-white py-6 px-6 shadow-md h-fit overflow-x-auto min-w-[400px] min-h-[250px] rounded-xl">
+        <Bar data={data} options={data.options} />
+      </div>
     </div>
   );
 };

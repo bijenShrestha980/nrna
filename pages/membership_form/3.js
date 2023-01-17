@@ -42,7 +42,7 @@ const Verification = () => {
       setVerification({
         ...data,
         passport_expiry_date: Date.parse(data.passport_expiry_date),
-        picture: picture,
+        image: picture,
       })
     );
     router.push("/membership_form/4");

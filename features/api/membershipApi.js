@@ -5,7 +5,7 @@ export const membershipApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `${process.env.REACT_APP_BASE_URL}/api/`,
     prepareHeaders: (headers) => {
-      const token = Cookies.get("nrna");
+      const token = Cookies.get("nrna_token");
       // If we have a token set in state, let's assume that we should be passing it.
       if (token) {
         headers.set("authorization", `Bearer ${token}`);
@@ -13,7 +13,7 @@ export const membershipApi = createApi({
       return headers;
     },
   }),
-  tagTypes: [],
+  tagTypes: ["Members", "Member"],
   endpoints: (builder) => ({
     memberRegister: builder.mutation({
       query: (data) => ({
@@ -22,7 +22,22 @@ export const membershipApi = createApi({
         body: data,
       }),
     }),
+    getMembers: builder.query({
+      query: () => "/members",
+      providesTags: ["Members"],
+    }),
+    getMemberById: builder.mutation({
+      query: ({ id }) => ({
+        url: `/members/${id}`,
+        method: "GET",
+      }),
+      invalidatesTags: ["Member"],
+    }),
   }),
 });
 
-export const { useMemberRegisterMutation } = membershipApi;
+export const {
+  useMemberRegisterMutation,
+  useGetMembersQuery,
+  useGetMemberByIdMutation,
+} = membershipApi;

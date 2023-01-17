@@ -1,5 +1,6 @@
 import { memo } from "react";
 import Image from "next/image";
+import { useDispatch } from "react-redux";
 // UTILS
 import {
   ArrowDownIcon,
@@ -9,8 +10,12 @@ import {
 } from "../../utils/icons";
 // ASSETS
 import logo from "../../assets/images/payment/esewa_small.png";
+// Reducers
+import { clearState, logout } from "@/features/slice/appSlice";
 
 const AdminHeader = (props) => {
+  const dispatch = useDispatch();
+
   return (
     <header
       className={`sm:flex sm:items-center sm:justify-between z-10 h-22 sm:h-16 text-slate-50 transition-all ease-in-out duration-700 mb-4`}
@@ -69,6 +74,10 @@ const AdminHeader = (props) => {
                 role="menuitem"
                 tabIndex="-1"
                 id="menu-item-1"
+                onClick={() => {
+                  dispatch(clearState());
+                  dispatch(logout());
+                }}
               >
                 Logout
               </li>

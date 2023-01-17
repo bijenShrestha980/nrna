@@ -14,10 +14,11 @@ import Spinner from "@/layout/Loader/Spinner";
 // REDUCERS
 import { useLoginAuthMutation } from "@/features/api/authApi";
 import { clearState, login } from "@/features/slice/appSlice";
+import { useGetCommitteesQuery } from "@/features/api/committeeApi";
 
 const Login = () => {
   return (
-    <>
+    <Header>
       <main className="container mx-auto px-3 flex h-screen">
         <div className="my-auto p-10 md:py-20 lg:mx-40 w-full bg-slate-100">
           <div className="w-full lg:w-4/5 xl:w-2/5 m-auto">
@@ -40,13 +41,18 @@ const Login = () => {
           </div>
         </div>
       </main>
-    </>
+    </Header>
   );
 };
 
 const Form = () => {
   const router = useRouter();
   const dispatch = useDispatch();
+  const {
+    isLoading: committeeIsLoading,
+    isSuccess: committeeIsSuccess,
+    data: committeeData,
+  } = useGetCommitteesQuery();
 
   const {
     control,
@@ -58,7 +64,11 @@ const Form = () => {
     useLoginAuthMutation();
 
   const onSubmit = (data) => {
-    loginAuth(data);
+    loginAuth({
+      email: data.email,
+      password: data.password,
+      committee_id: parseInt(data.committee),
+    });
   };
 
   useEffect(() => {
@@ -69,154 +79,155 @@ const Form = () => {
       clearState();
       dispatch(
         login({
-          token: data.data,
+          token: data.data.token,
+          committee_id: data.data.committee_id,
         })
       );
       router.push(`/dashboard`);
     }
   }, [isError, isSuccess]);
 
+  if (committeeIsLoading || !committeeIsSuccess) {
+    return <Spinner />;
+  }
   return (
-    <Header>
-      <form
-        className="my-16 text-center flex flex-col"
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <span className="relative">
-          <label htmlFor="committee" className="absolute p-4">
-            <LocationIcon className={"text-slate-500"} />
-          </label>
-          <Controller
-            name="committee"
-            defaultValue=""
-            control={control}
-            rules={{
-              required: "Committee field required",
-              minLength: {
-                value: 1,
-                message: "Min character length required",
-              },
-              maxLength: {
-                value: 99,
-                message: "Max character length exceded",
-              },
-            }}
-            render={({ field }) => (
-              <select
-                id="committee"
-                className={`w-full mb-4 p-4 pl-14 text-sm text-slate-500 font-semibold border-solid border-2 duration-100 ease-in-out focus:border-slate-600 focus-visible:outline-0 ${
-                  errors.committee ? "border-red-400" : "border-slate-400"
-                }`}
-                {...field}
-              >
-                <option value="">Select Comittee</option>
-                <option value="one">One</option>
-                <option value="two">Two</option>
-                <option value="three">Three</option>
-              </select>
-            )}
-          />
-        </span>
-        <span className="relative">
-          <label htmlFor="email" className="absolute p-4">
-            <MailIcon className={"text-slate-500"} />
-          </label>
-          <Controller
-            name="email"
-            defaultValue=""
-            control={control}
-            rules={{
-              required: true,
-              minLength: {
-                value: 1,
-                message: "Min character length required",
-              },
-              maxLength: {
-                value: 99,
-                message: "Max character length exceded",
-              },
-              pattern: {
-                value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-                message: "Enter a valid email address",
-              },
-            }}
-            render={({ field }) => (
-              <input
-                type="email"
-                id="email"
-                placeholder="Email Address"
-                className={`w-full mb-4 p-4 pl-14 text-sm text-slate-500 font-semibold border-solid border-2 duration-100 ease-in-out focus:border-slate-600 focus-visible:outline-0 ${
-                  errors.email ? "border-red-400" : "border-slate-400"
-                }`}
-                {...field}
-              />
-            )}
-          />
-        </span>
-        <span className="relative">
-          <label htmlFor="password" className="absolute p-4">
-            <LockIcon className={"text-slate-500"} />
-          </label>
-          <Controller
-            name="password"
-            defaultValue=""
-            control={control}
-            rules={{
-              required: true,
-              minLength: {
-                value: 1,
-                message: "Min character length required",
-              },
-              maxLength: {
-                value: 99,
-                message: "Max character length exceded",
-              },
-            }}
-            render={({ field }) => (
-              <input
-                type="password"
-                id="password"
-                placeholder="Password"
-                className={`w-full mb-4 p-4 pl-14 text-sm text-slate-500 font-semibold border-solid border-2 duration-100 ease-in-out focus:border-slate-600 focus-visible:outline-0 ${
-                  errors.password ? "border-red-400" : "border-slate-400"
-                }`}
-                {...field}
-              />
-            )}
-          />
-        </span>
-        {errors.comittee && (
-          <p className="text-red-400 font-semibold">
-            {errors.comittee.message}
-          </p>
-        )}
-        {errors.email && (
-          <p className="text-red-400 font-semibold">{errors.email.message}</p>
-        )}
-        {errors.password && (
-          <p className="text-red-400 font-semibold">
-            {errors.password.message}
-          </p>
-        )}
-        <div className="mt-10 flex flex-col md:flex-row justify-between items-center">
-          <span className="flex items-center">
+    <form
+      className="my-16 text-center flex flex-col"
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      <span className="relative">
+        <label htmlFor="committee" className="absolute p-4">
+          <LocationIcon className={"text-slate-500"} />
+        </label>
+        <Controller
+          name="committee"
+          defaultValue=""
+          control={control}
+          rules={{
+            required: "Committee field required",
+            minLength: {
+              value: 1,
+              message: "Min character length required",
+            },
+            maxLength: {
+              value: 99,
+              message: "Max character length exceded",
+            },
+          }}
+          render={({ field }) => (
+            <select
+              id="committee"
+              className={`w-full mb-4 p-4 pl-14 text-sm text-slate-500 font-semibold capitalize border-solid border-2 duration-100 ease-in-out focus:border-slate-600 focus-visible:outline-0 ${
+                errors.committee ? "border-red-400" : "border-slate-400"
+              }`}
+              {...field}
+            >
+              <option defaultValue="">Select Comittee</option>
+              {committeeIsSuccess &&
+                committeeData?.data.map((item, i) => (
+                  <option value={item.id} key={i} className="capitalize">
+                    {item.name}
+                  </option>
+                ))}
+            </select>
+          )}
+        />
+      </span>
+      <span className="relative">
+        <label htmlFor="email" className="absolute p-4">
+          <MailIcon className={"text-slate-500"} />
+        </label>
+        <Controller
+          name="email"
+          defaultValue=""
+          control={control}
+          rules={{
+            required: true,
+            minLength: {
+              value: 1,
+              message: "Min character length required",
+            },
+            maxLength: {
+              value: 99,
+              message: "Max character length exceded",
+            },
+            pattern: {
+              value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+              message: "Enter a valid email address",
+            },
+          }}
+          render={({ field }) => (
             <input
-              type="checkbox"
-              id="remember_me"
-              className="my-7 p-4 h-5 w-5 text-sm border-solid border-2 border-slate-400 duration-500 ease-in-out focus:border-slate-600 focus-visible:outline-0"
+              type="email"
+              id="email"
+              placeholder="Email Address"
+              className={`w-full mb-4 p-4 pl-14 text-sm text-slate-500 font-semibold border-solid border-2 duration-100 ease-in-out focus:border-slate-600 focus-visible:outline-0 ${
+                errors.email ? "border-red-400" : "border-slate-400"
+              }`}
+              {...field}
             />
-            <label htmlFor="remember_me" className="text-slate-400 mx-2">
-              Remember me
-            </label>
-          </span>
-          <Btn
-            title={isLoading ? <Spinner /> : `Login`}
-            className={"bg-sky-600 active:bg-sky-700"}
-            disabled={isLoading && true}
+          )}
+        />
+      </span>
+      <span className="relative">
+        <label htmlFor="password" className="absolute p-4">
+          <LockIcon className={"text-slate-500"} />
+        </label>
+        <Controller
+          name="password"
+          defaultValue=""
+          control={control}
+          rules={{
+            required: true,
+            minLength: {
+              value: 1,
+              message: "Min character length required",
+            },
+            maxLength: {
+              value: 99,
+              message: "Max character length exceded",
+            },
+          }}
+          render={({ field }) => (
+            <input
+              type="password"
+              id="password"
+              placeholder="Password"
+              className={`w-full mb-4 p-4 pl-14 text-sm text-slate-500 font-semibold border-solid border-2 duration-100 ease-in-out focus:border-slate-600 focus-visible:outline-0 ${
+                errors.password ? "border-red-400" : "border-slate-400"
+              }`}
+              {...field}
+            />
+          )}
+        />
+      </span>
+      {errors.comittee && (
+        <p className="text-red-400 font-semibold">{errors.comittee.message}</p>
+      )}
+      {errors.email && (
+        <p className="text-red-400 font-semibold">{errors.email.message}</p>
+      )}
+      {errors.password && (
+        <p className="text-red-400 font-semibold">{errors.password.message}</p>
+      )}
+      <div className="mt-10 flex flex-col md:flex-row justify-between items-center">
+        <span className="flex items-center">
+          <input
+            type="checkbox"
+            id="remember_me"
+            className="my-7 p-4 h-5 w-5 text-sm border-solid border-2 border-slate-400 duration-500 ease-in-out focus:border-slate-600 focus-visible:outline-0"
           />
-        </div>
-      </form>
-    </Header>
+          <label htmlFor="remember_me" className="text-slate-400 mx-2">
+            Remember me
+          </label>
+        </span>
+        <Btn
+          title={isLoading ? <Spinner /> : `Login`}
+          className={"bg-sky-600 active:bg-sky-700"}
+          disabled={isLoading && true}
+        />
+      </div>
+    </form>
   );
 };
 

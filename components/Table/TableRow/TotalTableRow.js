@@ -13,9 +13,15 @@ const TotalTableRow = (props) => {
     >
       {/* <td className="py-3 pl-5">{props.sn + 1 + props.itemOffset}</td> */}
       <td className="py-3 px-5 select-none">#{props.id}</td>
-      <td className="py-3 px-5 capitalize select-none">{props.name}</td>
-      <td className="py-3 px-5 capitalize select-none">{props.country}</td>
-      <td className="py-3 px-5 select-none">{props.email}</td>
+      <td className="py-3 px-5 capitalize select-none">
+        {props.name ? props.name : "-"}
+      </td>
+      <td className="py-3 px-5 capitalize select-none">
+        {props.country ? props.country : "-"}
+      </td>
+      <td className="py-3 px-5 select-none">
+        {props.email ? props.email : "-"}
+      </td>
       {/* <td className="py-3 px-5">{props.number}</td> */}
       <td className="py-3 px-5 capitalize select-none">
         <span
@@ -27,7 +33,7 @@ const TotalTableRow = (props) => {
               : "badge-light-danger"
           }`}
         >
-          {props.type}
+          {props.type ? props.type : "-"}
         </span>
       </td>
       {/* <td className="py-3 px-5 capitalize">

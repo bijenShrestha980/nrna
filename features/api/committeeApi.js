@@ -5,7 +5,7 @@ export const committeeApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `${process.env.REACT_APP_BASE_URL}/api/`,
     prepareHeaders: (headers) => {
-      const token = Cookies.get("nrna");
+      const token = Cookies.get("nrna_token");
       // If we have a token set in state, let's assume that we should be passing it.
       if (token) {
         headers.set("authorization", `Bearer ${token}`);

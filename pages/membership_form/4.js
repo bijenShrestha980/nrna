@@ -14,7 +14,7 @@ import esewa from "@/assets/images/payment/esewa.png";
 import khalti from "@/assets/images/payment/khalti.svg";
 import paypal from "@/assets/images/payment/paypal.webp";
 // REDUCERS
-import { appSelector, setPayment } from "@/features/slice/appSlice";
+import { appSelector, clearState, setPayment } from "@/features/slice/appSlice";
 import { useGetPostsQuery } from "@/features/api/postApi";
 import { useGetCommitteesQuery } from "@/features/api/committeeApi";
 import { useMemberRegisterMutation } from "@/features/api/membershipApi";
@@ -25,8 +25,8 @@ import Btn from "@/components/Button/Btn";
 import UserLayout from "@/layout/UserLayout";
 import Spinner from "@/layout/Loader/Spinner";
 // UTILS
-import { dataURLtoFile } from "@/utils/dataURLtoFile";
 import formatDate from "@/utils/dateFormater";
+import { dataURLtoFile } from "@/utils/dataURLtoFile";
 
 const Payment = () => {
   const dispatch = useDispatch();
@@ -391,6 +391,7 @@ const Payment = () => {
 
 const Registration = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
   const joined_date = new Date();
   const expiry_date = `${joined_date.getFullYear() + 2}-${
     joined_date.getMonth() + 1
@@ -414,10 +415,10 @@ const Registration = () => {
           "mobile",
           `${membershipForm?.personalInfo?.code}-${membershipForm?.personalInfo?.mobile}`
         );
-      membershipForm.verification.picture &&
+      membershipForm.verification.image &&
         formData.append(
-          "picture",
-          dataURLtoFile(membershipForm.verification.picture, "profile.jpg")
+          "image",
+          dataURLtoFile(membershipForm.verification.image, "profile.jpg")
         );
       membershipForm?.payment?.paymentOption === "bank" &&
         membershipForm?.payment?.voucher &&
@@ -431,7 +432,7 @@ const Registration = () => {
           formatDate(membershipForm.verification.passport_expiry_date)
         );
       membershipForm.payment.committee &&
-        formData.append("committee[id]", "membershipForm.payment.committee");
+        formData.append("committee[id]", membershipForm.payment.committee);
       membershipForm.payment.post &&
         formData.append("post[id]", membershipForm.payment.post);
 
@@ -445,7 +446,7 @@ const Registration = () => {
             key[1] === null ||
             key[1] === false ||
             key[0] === "passport_expiry_date" ||
-            key[0] === "picture" ||
+            key[0] === "image" ||
             key[0] === "voucher" ||
             key[0] === "post" ||
             key[0] === "committee" ||
@@ -467,12 +468,13 @@ const Registration = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      console.log(data);
+      // console.log(data);
       toast.success(data.message);
+      dispatch(clearState());
       router.push("/membership_form/success");
     }
     if (error) {
-      toast.success(error.data.message);
+      toast.error(error.data.message);
     }
   }, [isSuccess, error]);
 };

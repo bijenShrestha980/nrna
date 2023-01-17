@@ -6,6 +6,7 @@ export const appSlice = createSlice({
   initialState: {
     token: {
       nrna_token: Cookies.get("nrna_token"),
+      committee_id: Cookies.get("committee_id"),
     },
     membershipForm: {},
   },
@@ -16,12 +17,16 @@ export const appSlice = createSlice({
       };
     },
     login: (state, { payload }) => {
-      Cookies.set("nrna_token", payload.token.token, { path: "/" });
-      state.token.nrna_token = payload.token.token;
+      Cookies.set("nrna_token", payload.token, { path: "/" });
+      Cookies.set("committee_id", payload.committee_id, { path: "/" });
+      state.token.nrna_token = payload.token;
+      state.token.committee_id = payload.committee_id;
     },
     logout: (state) => {
       Cookies.remove("nrna_token");
+      Cookies.remove("committee_id");
       state.token.nrna_token = null;
+      state.token.committee_id = null;
     },
     setPersonalInfo: (state, { payload }) => {
       state.membershipForm.personalInfo = payload;

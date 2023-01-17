@@ -14,6 +14,7 @@ const TotalTable = (props) => {
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
   const itemsPerPage = 10;
+  // console.log(props);
 
   // Filter
   function search(e) {
@@ -29,7 +30,18 @@ const TotalTable = (props) => {
       if (searchTerm === "") {
         return el;
       } else {
-        return el.name.toLowerCase().includes(searchTerm);
+        return (
+          el?.first_name?.toLowerCase().includes(searchTerm) ||
+          el?.middle_name?.toLowerCase().includes(searchTerm) ||
+          el?.last_name?.toLowerCase().includes(searchTerm) ||
+          (
+            el?.first_name?.toLowerCase() +
+            " " +
+            el?.middle_name?.toLowerCase() +
+            " " +
+            el?.last_name?.toLowerCase()
+          ).includes(searchTerm)
+        );
       }
     })
   );
@@ -91,7 +103,9 @@ const TotalTable = (props) => {
                       setCurrentItems(
                         filteredData
                           ?.slice(itemOffset, itemOffset + itemsPerPage)
-                          .sort((a, b) => a.name.localeCompare(b.name))
+                          .sort((a, b) =>
+                            a?.first_name?.localeCompare(b?.first_name)
+                          )
                       )
                     }
                     className="h-3 w-3 cursor-pointer transition ease-in-out duration-150 rounded-full hover:scale-125 active:scale-150"
@@ -108,7 +122,7 @@ const TotalTable = (props) => {
                       setCurrentItems(
                         filteredData
                           ?.slice(itemOffset, itemOffset + itemsPerPage)
-                          .sort((a, b) => a.country.localeCompare(b.country))
+                          .sort((a, b) => a?.country?.localeCompare(b?.country))
                       )
                     }
                     className="h-3 w-3 cursor-pointer transition ease-in-out duration-150 rounded-full hover:scale-125 active:scale-150"
@@ -125,7 +139,7 @@ const TotalTable = (props) => {
                       setCurrentItems(
                         filteredData
                           ?.slice(itemOffset, itemOffset + itemsPerPage)
-                          .sort((a, b) => a.email.localeCompare(b.email))
+                          .sort((a, b) => a?.email?.localeCompare(b?.email))
                       )
                     }
                     className="h-3 w-3 cursor-pointer transition ease-in-out duration-150 rounded-full hover:scale-125 active:scale-150"
@@ -159,7 +173,7 @@ const TotalTable = (props) => {
                       setCurrentItems(
                         filteredData
                           ?.slice(itemOffset, itemOffset + itemsPerPage)
-                          .sort((a, b) => a.type.localeCompare(b.type))
+                          .sort((a, b) => a?.type?.localeCompare(b?.type))
                       )
                     }
                     className="h-3 w-3 cursor-pointer transition ease-in-out duration-150 rounded-full hover:scale-125 active:scale-150"
@@ -193,15 +207,25 @@ const TotalTable = (props) => {
                 <TotalTableRow
                   key={i}
                   sn={i}
-                  id={item.id}
-                  name={item.name}
-                  country={item.country}
-                  email={item.email}
-                  number={item.number}
-                  type={item.type}
-                  payment={item.payment}
-                  itemOffset={itemOffset}
-                  onClick={() => router.push(`/dashboard/${item.id}`)}
+                  id={item.id && item.id}
+                  name={
+                    item.first_name &&
+                    item.last_name &&
+                    `${item.first_name} ${item?.middle_name} ${item.last_name}`
+                  }
+                  country={item.country && item.country}
+                  email={item.email && item.email}
+                  number={item.number && item.number}
+                  type={item.type && item.type}
+                  payment={item.payment && item.payment}
+                  itemOffset={itemOffset && itemOffset}
+                  onClick={() =>
+                    router.push(
+                      `/dashboard/${props.title.replace(/\s+/g, "_")}/${
+                        item.id
+                      }`
+                    )
+                  }
                 />
               ))}
           </tbody>
