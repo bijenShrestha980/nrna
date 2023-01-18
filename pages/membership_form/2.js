@@ -14,6 +14,7 @@ const Profession = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const { membershipForm } = useSelector(appSelector);
+  console.log(membershipForm);
 
   const {
     control,
@@ -164,14 +165,14 @@ const Profession = () => {
               />
             </span>
             <span className="flex flex-col">
-              <label htmlFor="vounteer" className="text-slate-400">
+              <label htmlFor="volunteer" className="text-slate-400">
                 Volunteer
               </label>
               <Controller
                 name="volunteer"
                 defaultValue={
-                  membershipForm?.profAndInt?.vounteer
-                    ? membershipForm?.profAndInt?.vounteer
+                  membershipForm?.profAndInt?.volunteer
+                    ? membershipForm?.profAndInt?.volunteer
                     : false
                 }
                 control={control}

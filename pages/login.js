@@ -19,25 +19,34 @@ import { useGetCommitteesQuery } from "@/features/api/committeeApi";
 const Login = () => {
   return (
     <Header>
-      <main className="container mx-auto px-3 flex h-screen">
-        <div className="my-auto p-10 md:py-20 lg:mx-40 w-full bg-slate-100">
-          <div className="w-full lg:w-4/5 xl:w-2/5 m-auto">
-            <div className="text-center">
-              <Image
-                width={"100"}
-                height={"100"}
-                src={logo}
-                alt="logo"
-                className="mx-auto w-auto h-auto"
-              />
-              <h3 className="text-2xl md:text-3xl font-semibold text-sky-600 py-2">
-                Registered Membership Form
-              </h3>
-              <h3 className="text-2xl md:text-3xl font-semibold text-slate-700 py-2">
-                Dashboard
-              </h3>
+      <main className="container mx-auto flex h-screen">
+        <div className="lg:mx-40 w-full bg-slate-100 my-auto py-10">
+          <div className="px-10 md:px-20 w-full">
+            <div className="w-full xl:w-3/5 m-auto">
+              <div className="text-center">
+                <Image
+                  width={"100"}
+                  height={"100"}
+                  src={logo}
+                  alt="logo"
+                  className="mx-auto w-auto h-auto"
+                />
+                <h3 className="text-2xl md:text-3xl font-semibold text-sky-600 py-2">
+                  Registered Membership Form
+                </h3>
+                <h3 className="text-2xl md:text-3xl font-semibold text-slate-700 py-2">
+                  Dashboard
+                </h3>
+              </div>
+              <Form />
             </div>
-            <Form />
+            <footer className="flex justify-center items-center text-sm text-slate-600">
+              <p>Copyright Global NRNA 2022</p>
+              &nbsp;
+              <p>|</p>
+              &nbsp;
+              <p>Powered by : Unitech</p>
+            </footer>
           </div>
         </div>
       </main>

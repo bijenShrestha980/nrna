@@ -25,26 +25,24 @@ const TotalTable = (props) => {
     setPageCount(1);
   }
 
-  const filteredData = useCallback(
-    props.tableData?.filter((el) => {
-      if (searchTerm === "") {
-        return el;
-      } else {
-        return (
-          el?.first_name?.toLowerCase().includes(searchTerm) ||
-          el?.middle_name?.toLowerCase().includes(searchTerm) ||
-          el?.last_name?.toLowerCase().includes(searchTerm) ||
-          (
-            el?.first_name?.toLowerCase() +
-            " " +
-            el?.middle_name?.toLowerCase() +
-            " " +
-            el?.last_name?.toLowerCase()
-          ).includes(searchTerm)
-        );
-      }
-    })
-  );
+  const filteredData = props.tableData?.filter((el) => {
+    if (searchTerm === "") {
+      return el;
+    } else {
+      return (
+        el?.first_name?.toLowerCase().includes(searchTerm) ||
+        el?.middle_name?.toLowerCase().includes(searchTerm) ||
+        el?.last_name?.toLowerCase().includes(searchTerm) ||
+        (
+          el?.first_name?.toLowerCase() +
+          " " +
+          el?.middle_name?.toLowerCase() +
+          " " +
+          el?.last_name?.toLowerCase()
+        ).includes(searchTerm)
+      );
+    }
+  });
 
   useEffect(() => {
     if (filteredData) {

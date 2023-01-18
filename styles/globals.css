@@ -31,6 +31,9 @@ option {
   font-weight: 600;
   font-size: 15px;
 }
+.select_arrow {
+  -webkit-appearance: none;
+}
 /* Pill */
 .badge {
   display: inline-block;

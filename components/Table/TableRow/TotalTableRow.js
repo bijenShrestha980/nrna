@@ -48,7 +48,7 @@ const TotalTableRow = (props) => {
                 ? esewa
                 : bank
             }
-            alt="paument"
+            alt="payment"
             loading="lazy"
             className="mr-2 w-5 h-5 rounded-xl object-contain"
           />

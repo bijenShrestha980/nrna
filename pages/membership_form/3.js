@@ -143,7 +143,7 @@ const Verification = () => {
                     <DatePicker
                       selected={field.value}
                       showPopperArrow={false}
-                      maxDate={new Date()}
+                      minDate={new Date()}
                       showDayMonthYearPicker
                       peekNextMonth
                       showMonthDropdown

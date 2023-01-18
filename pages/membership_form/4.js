@@ -10,11 +10,16 @@ import "react-datepicker/dist/react-datepicker.css";
 
 // ASSETS
 import bankTransfer from "@/assets/images/payment/bank.png";
-import esewa from "@/assets/images/payment/esewa.png";
+import esewa from "@/assets/images/payment/esewa.webp";
 import khalti from "@/assets/images/payment/khalti.svg";
-import paypal from "@/assets/images/payment/paypal.webp";
+import paypal from "@/assets/images/payment/paypal.svg";
 // REDUCERS
-import { appSelector, clearState, setPayment } from "@/features/slice/appSlice";
+import {
+  appSelector,
+  clearMembershipForm,
+  clearState,
+  setPayment,
+} from "@/features/slice/appSlice";
 import { useGetPostsQuery } from "@/features/api/postApi";
 import { useGetCommitteesQuery } from "@/features/api/committeeApi";
 import { useMemberRegisterMutation } from "@/features/api/membershipApi";
@@ -444,7 +449,6 @@ const Registration = () => {
           if (
             key[1] === "" ||
             key[1] === null ||
-            key[1] === false ||
             key[0] === "passport_expiry_date" ||
             key[0] === "image" ||
             key[0] === "voucher" ||
@@ -457,8 +461,20 @@ const Registration = () => {
           ) {
             // console.log(key, "not");
           } else {
-            // Object.assign(registrationData, { [key[0]]: key[1] });
-            formData.append(key[0], key[1]);
+            key[0] === "profession" ||
+            key[0] === "interest" ||
+            key[0] === "qualification" ||
+            key[0] === "project_notification" ||
+            key[0] === "news_letter" ||
+            key[0] === "volunteer"
+              ? formData.append(
+                  `informations[${key[0]}]`,
+                  key[1] === true ? 2 : key[1] === false ? 1 : key[1]
+                )
+              : formData.append(
+                  key[0],
+                  key[1] === true ? 2 : key[1] === false ? 1 : key[1]
+                );
           }
         })
       );
@@ -469,8 +485,9 @@ const Registration = () => {
   useEffect(() => {
     if (isSuccess) {
       // console.log(data);
-      toast.success(data.message);
       dispatch(clearState());
+      dispatch(clearMembershipForm());
+      toast.success(data.message);
       router.push("/membership_form/success");
     }
     if (error) {

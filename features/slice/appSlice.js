@@ -16,6 +16,9 @@ export const appSlice = createSlice({
         ...state,
       };
     },
+    clearMembershipForm: (state) => {
+      state.membershipForm = {};
+    },
     login: (state, { payload }) => {
       Cookies.set("nrna_token", payload.token, { path: "/" });
       Cookies.set("committee_id", payload.committee_id, { path: "/" });
@@ -48,6 +51,7 @@ export const appSlice = createSlice({
 
 export const {
   clearState,
+  clearMembershipForm,
   login,
   logout,
   setPersonalInfo,
