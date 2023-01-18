@@ -14,7 +14,7 @@ import LargColorCard from "@/components/Card/LargColorCard";
 // REDUCERS
 import { useGetMembersQuery } from "@/features/api/membershipApi";
 
-const dashboard = () => {
+const Dashboard = () => {
   const {
     isLoading: membersIsLoading,
     isSuccess: membersIsSuccess,
@@ -68,4 +68,4 @@ const Card = () => {
     />
   ));
 };
-export default dashboard;
+export default Dashboard;
