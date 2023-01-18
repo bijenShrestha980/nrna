@@ -9,11 +9,12 @@ import professions from "@/assets/data/professions.json";
 import { appSelector, setProfAndInt } from "../../features/slice/appSlice";
 // COMPONENTS
 import UserLayout from "@/layout/UserLayout";
+import Spinner from "@/layout/Loader/Spinner";
 const Btn = dynamic(() => import("@/components/Button/Btn"), {
-  loading: () => "Loading...",
+  loading: () => <Spinner />,
 });
 const Navbar = dynamic(() => import("@/layout/Navbar/Navbar"), {
-  loading: () => "Loading...",
+  loading: () => <Spinner />,
 });
 
 const Profession = () => {

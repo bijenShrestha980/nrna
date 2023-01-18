@@ -8,11 +8,11 @@ const Auth = ({ children }) => {
   const { token } = useSelector(appSelector);
   const router = useRouter();
 
-  useEffect(() => {
-    if (!token.nrna_token) {
-      router.push("/login");
-    }
-  }, [token]);
+  // useEffect(() => {
+  //   if (!token.nrna_token) {
+  //     router.push("/login");
+  //   }
+  // }, [token]);
 
   return <>{children}</>;
 };

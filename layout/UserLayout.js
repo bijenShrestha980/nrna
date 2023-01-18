@@ -1,16 +1,8 @@
-import dynamic from "next/dynamic";
 import { memo } from "react";
-import Spinner from "./Loader/Spinner";
 // COMPONENTS
-const UserBreadcrumb = dynamic(() => import("./Breadcrumb/UserBreadcrumb"), {
-  loading: () => <Spinner />,
-});
-const Header = dynamic(() => import("./Header/Header"), {
-  loading: () => <Spinner />,
-});
-const UserHeader = dynamic(() => import("./Header/UserHeader"), {
-  loading: () => <Spinner />,
-});
+import UserBreadcrumb from "./Breadcrumb/UserBreadcrumb";
+import Header from "./Header/Header";
+import UserHeader from "./Header/UserHeader";
 
 const UserLayout = ({ children }) => {
   return (

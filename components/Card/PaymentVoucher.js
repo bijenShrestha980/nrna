@@ -1,7 +1,10 @@
 import dynamic from "next/dynamic";
 import React, { memo, useRef } from "react";
 // COMPONENTS
-import Btn from "../Button/Btn";
+import Spinner from "@/layout/Loader/Spinner";
+const Btn = dynamic(() => import("@/components/Button/Btn"), {
+  loading: () => <Spinner />,
+});
 
 const PaymentVoucher = (props) => {
   const imageRef = useRef(null);

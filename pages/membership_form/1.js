@@ -9,11 +9,12 @@ import { appSelector, setPersonalInfo } from "@/features/slice/appSlice";
 import { COUNTRIES } from "@/utils/countries";
 // COMPONENTS
 import UserLayout from "@/layout/UserLayout";
+import Spinner from "@/layout/Loader/Spinner";
 const Btn = dynamic(() => import("@/components/Button/Btn"), {
-  loading: () => "Loading...",
+  loading: () => <Spinner />,
 });
 const Navbar = dynamic(() => import("@/layout/Navbar/Navbar"), {
-  loading: () => "Loading...",
+  loading: () => <Spinner />,
 });
 
 const PersonalInformation = () => {
