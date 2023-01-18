@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React, { memo } from "react";
 // ASSETS
-import logo from "../../assets/images/logo.png";
+import logo from "@/assets/images/logo.png";
 
 const Header = () => {
   return (

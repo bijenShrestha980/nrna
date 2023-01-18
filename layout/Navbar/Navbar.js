@@ -1,7 +1,8 @@
 import React, { memo } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import navlink from "../../assets/data/navlink.json";
+// ASSETS
+import navlink from "@/assets/data/navlink.json";
 
 const Navbar = () => {
   const router = useRouter();

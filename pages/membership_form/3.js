@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useRouter } from "next/router";
+import Image from "next/image";
 import DatePicker from "react-datepicker";
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -210,14 +211,18 @@ const Verification = () => {
               // }}
             />
             <div
-              className="w-36 h-40 my-3 border-solid border-2 border-slate-400 bg-slate-50 cursor-pointer flex justify-center items-center"
+              className={`w-36 h-40 my-3 cursor-pointer flex justify-center items-center ${
+                membershipForm?.verification?.image || picture
+                  ? ""
+                  : "border-solid border-2 border-slate-400 bg-slate-50"
+              }`}
               onClick={() => imageRef.current?.click()}
             >
-              {membershipForm?.verification?.picture || picture ? (
-                <img
-                  src={
-                    picture ? picture : membershipForm?.verification?.picture
-                  }
+              {membershipForm?.verification?.image || picture ? (
+                <Image
+                  width="500"
+                  height="500"
+                  src={picture ? picture : membershipForm?.verification?.image}
                   alt="Profile"
                   className="w-full h-full object-contain"
                 />
